@@ -19,10 +19,10 @@ func main() {
 
 }
 
-func run(proj string, out io.Writer) error{
+func run(proj string, out io.Writer) error {
 	// check to see if project direcory is proviided
-	if proj == ""{
-		return fmt.Errorf("Project directory is required")
+	if proj == "" {
+		return fmt.Errorf("project directory is required: %w", ErrValidation)
 	}
 
 	args := []string{"build", ".", "errors"}
@@ -30,7 +30,7 @@ func run(proj string, out io.Writer) error{
 	cmd.Dir = proj
 
 	if err := cmd.Run(); err != nil {
-		return fmt.Errorf("'go build' failed: %s", err)
+		return &stepErr{step: "go build", msg: "go build failed", cause: err}
 	}
 
 	_, err := fmt.Fprintln(out, "Go build: SUCESS!")
