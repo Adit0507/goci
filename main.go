@@ -33,7 +33,7 @@ func run(proj string, out io.Writer) error {
 		return &stepErr{step: "go build", msg: "go build failed", cause: err}
 	}
 
-	_, err := fmt.Fprintln(out, "Go build: SUCESS!")
+	_, err := fmt.Fprintln(out, "Go Build: SUCCESS!")
 
 	return err
 }
