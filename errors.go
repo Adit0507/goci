@@ -7,6 +7,7 @@ import (
 
 var (
 	ErrValidation = errors.New("Validation failed")
+	ErrSignal = errors.New("Received Signal")
 )
 
 // class of errors associated with CI steps
